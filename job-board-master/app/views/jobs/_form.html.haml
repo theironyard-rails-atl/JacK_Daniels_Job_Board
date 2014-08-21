@@ -15,6 +15,23 @@
     = f.text_area :description, rows: 10, class: "form-control"
 
   .form-group
+    = f.label :salary
+    = f.text_field :salary, class: "form-control", placeholder: "$"
+
+  .form-group
+    = f.label :company
+    = f.text_field :company, class: "form-control"
+
+  .form-group
+    = f.label :location
+    = f.text_field :location, class: "form-control"
+
+  .form-group
+    = f.label "Job Type (Full-time, Part-time, Contract, etc)"
+    %br
+    = f.select :jobtype,  options_for_select(%w[Full-time Part-time Contract Internship]), {}, class: "form-control dropdown"
+
+  .form-group
     = f.label :start_date
     = f.date_field :start_date, class: "form-control"
 

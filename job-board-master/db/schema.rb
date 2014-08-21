@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821191329) do
+ActiveRecord::Schema.define(version: 20140821201742) do
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140821191329) do
     t.string   "salary"
     t.string   "location"
     t.string   "company"
-    t.string   "type"
+    t.string   "jobtype"
   end
 
   create_table "phones", force: true do |t|

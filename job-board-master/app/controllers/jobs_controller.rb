@@ -66,8 +66,7 @@ class JobsController < ApplicationController
   end
 
   def create_params
-    params.require(:job).permit(:title, :description,
-                                :start_date, :end_date)
+    params.require(:job).permit(:title, :description, :start_date, :end_date, :salary, :location, :company, :jobtype)
   end
 
   def update_params

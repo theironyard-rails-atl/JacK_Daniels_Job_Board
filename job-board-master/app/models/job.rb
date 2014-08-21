@@ -13,7 +13,7 @@
 #
 
 class Job < ActiveRecord::Base
-  validates_presence_of :title, :description, :user_id
+  validates_presence_of :title, :description, :user_id, :salary, :location, :company, :jobtype
 
   def self.active
     now   = Time.now
