@@ -34,6 +34,6 @@ class Job < ActiveRecord::Base
 
   def self.search(search)
     search
-    where("title ilike ? or description ilike ?", "%#{search}%", "%#{search}%")
+    where("title ilike ? or description ilike ? or location ilike ? or jobtype ilike ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end
