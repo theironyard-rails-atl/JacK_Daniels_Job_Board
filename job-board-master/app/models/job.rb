@@ -16,22 +16,15 @@ class Job < ActiveRecord::Base
   validates_presence_of :title, :description, :user_id, :salary, :location, :company, :jobtype
 
   def self.active
-    now   = Time.now
+    now   = Date.today
     query = %{
-      ( start_date IS NULL OR start_date < ? ) AND
+      ( start_date IS NULL OR start_date <= ? ) AND
       ( end_date   IS NULL OR end_date  >= ? )
     }.squish
 
     where [query, now, now]
   end
 
-  def self.search
-    if search
-      find(:all, conditions: ['name LIKE ?', "%#{search}"])
-    else
-      find(:all)
-    end
-  end
 
   # belongs_to :user
   # ^- would define job.user
@@ -40,11 +33,7 @@ class Job < ActiveRecord::Base
   end
 
   def self.search(search)
-    search_condition = "%" + search + "%"
-    if params[:search]
-      @jobs = Job.find(:all, conditions: ['title LIKE ? or description LIKE ?', "%#{params[:search]}%"])
-    else
-      @jobs = Job.active
-    end
+    search
+    where("title ilike ? or description ilike ?", "%#{search}%", "%#{search}%")
   end
 end
