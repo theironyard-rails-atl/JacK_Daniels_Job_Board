@@ -8,6 +8,8 @@ class JobsController < ApplicationController
     @jobs = Job.active
     if params[:search]
       @jobs = Job.search(params[:search])
+    elsif params[:sort]
+      @jobs = Job.order(params[:sort] + " " + params[:direction])
     end
   end
 
