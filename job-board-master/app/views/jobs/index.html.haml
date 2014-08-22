@@ -1,5 +1,11 @@
-- if current_user
-  = link_to "Post New Job", new_job_path, class: "btn btn-primary"
+.container.row
+  .col-xs-2
+    - if current_user
+      = link_to "Post New Job", new_job_path, class: "btn btn-primary"
+
+  .col-xs-5.col-xs-offset-5
+    = form_tag jobs_path, method: "get" do
+      = text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control"
 
 %br
 %br

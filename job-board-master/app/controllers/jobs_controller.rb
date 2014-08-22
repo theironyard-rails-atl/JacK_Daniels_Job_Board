@@ -6,7 +6,9 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.active
-
+    if params[:search]
+      @jobs = Job.where("title like ?", params[:search].downcase)
+    end
   end
 
   def show

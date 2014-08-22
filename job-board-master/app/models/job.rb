@@ -25,6 +25,14 @@ class Job < ActiveRecord::Base
     where [query, now, now]
   end
 
+  def self.search
+    if search
+      find(:all, conditions: ['name LIKE ?', "%#{search}"])
+    else
+      find(:all)
+    end
+  end
+
   # belongs_to :user
   # ^- would define job.user
   def author
