@@ -6,8 +6,8 @@
 #
 default: &default
   adapter: postgresql
-  username: diego
-  password: ""
+  username: <%= ENV['POSTGRES_APP_USERNAME'] %>
+  password: <%= ENV['POSTGRES_APP_PASSWORD'] %>
   pool: 5
   timeout: 5000
 
