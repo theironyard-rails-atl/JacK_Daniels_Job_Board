@@ -30,4 +30,13 @@ class Job < ActiveRecord::Base
   def author
     User.find self.user_id
   end
+
+  def self.search(search)
+    search_condition = "%" + search + "%"
+    if params[:search]
+      @jobs = Job.find(:all, conditions: ['title LIKE ? or description LIKE ?', "%#{params[:search]}%"])
+    else
+      @jobs = Job.active
+    end
+  end
 end

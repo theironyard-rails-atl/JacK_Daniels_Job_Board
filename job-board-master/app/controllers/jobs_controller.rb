@@ -6,6 +6,7 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.active
+
   end
 
   def show
@@ -73,4 +74,5 @@ class JobsController < ApplicationController
     # For now, reuse
     create_params
   end
+
 end
