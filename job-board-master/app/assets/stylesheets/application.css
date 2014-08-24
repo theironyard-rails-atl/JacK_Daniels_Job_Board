@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+/*sort_arrows*/
+.pretty th .current {
+  padding-right:12px;
+  background-repeat: no-repeat;
+  background-position:right center;
+}
+
+th .asc:after {
+  font-family: "FontAwesome";
+  content: "\f0d8";
+  padding-left: 6px;
+}
+
+th .desc:after {
+  font-family: "FontAwesome";
+  content: "\f0d7";
+  padding-left: 6px;
+}
