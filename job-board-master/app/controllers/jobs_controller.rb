@@ -1,16 +1,13 @@
 class JobsController < ApplicationController
-  # Provided by Devise
-  # Redirects to login if not logged in already
+  helper_method :sort_column, :sort_direction
+
   before_action :authenticate_user!, except: [:show]
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @jobs = Job.active
-    if params[:search]
-      @jobs = Job.search(params[:search])
-    elsif params[:sort]
-      @jobs = Job.order(params[:sort] + " " + params[:direction])
-    end
+    @jobs = @jobs.search(params[:search]) if params[:search]
+    @jobs = @jobs.order(sort_column + " " + sort_direction)
   end
 
   def show
@@ -77,6 +74,16 @@ class JobsController < ApplicationController
   def update_params
     # For now, reuse
     create_params
+  end
+
+  private
+
+  def sort_column
+    Job.column_names.include?(params[:sort]) ? params[:sort] : "end_date"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end
